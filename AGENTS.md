@@ -175,3 +175,37 @@ The fundamental building blocks of a NestJS application.
 ### CLI Commands
 -   `nest generate middleware common/middleware/logger`: Generates a middleware.
 -   `nest generate interceptor common/interceptors/logging`: Generates an interceptor.
+
+## Step 8: Unit Testing (Jest)
+
+### What
+-   **Unit Testing**: Testing individual units of code (functions, classes) in isolation.
+-   **Jest**: A delightful JavaScript Testing Framework with a focus on simplicity.
+-   **Mocking**: Creating fake versions of dependencies to isolate the code being tested.
+
+### How
+1.  **Create Test File**: Create a file with `.spec.ts` extension (e.g., `users.service.spec.ts`).
+2.  **Setup Testing Module**: Use `Test.createTestingModule()` to create a mock NestJS module.
+3.  **Mock Dependencies**: Provide mock implementations for dependencies (e.g., Repository).
+    ```typescript
+    const mockRepository = {
+      find: jest.fn().mockResolvedValue([]),
+    };
+    ```
+4.  **Write Tests**: Use `describe`, `it`, and `expect` to define test cases.
+    ```typescript
+    it('should return an array of users', async () => {
+      expect(await service.findAll()).toEqual([]);
+    });
+    ```
+
+### Why
+-   **Reliability**: Ensures your code works as expected.
+-   **Refactoring**: Allows you to change code with confidence, knowing tests will catch regressions.
+-   **Documentation**: Tests serve as living documentation of how your code should behave.
+
+### When
+-   **ALWAYS**. Write tests for every service and controller method. Aim for high code coverage.
+
+### CLI Commands
+-   `nest generate service users --no-spec`: (If you didn't use --no-spec, the CLI creates the spec file automatically).
