@@ -209,3 +209,72 @@ The fundamental building blocks of a NestJS application.
 
 ### CLI Commands
 -   `nest generate service users --no-spec`: (If you didn't use --no-spec, the CLI creates the spec file automatically).
+
+## Step 9: Exception Filters
+
+### What
+-   **Exception Filter**: A class that handles exceptions thrown by your application and formats the response sent to the client.
+-   **HttpException**: The base class for standard HTTP exceptions in NestJS (e.g., `NotFoundException`, `BadRequestException`).
+
+### How
+1.  **Create Filter**: Implement `ExceptionFilter` interface.
+    ```typescript
+    catch(exception: HttpException, host: ArgumentsHost) { ... }
+    ```
+2.  **Decorate**: Use `@Catch(HttpException)` to tell NestJS which exceptions to catch.
+3.  **Register**: Use `@UseFilters()` on a controller/method, or globally in `main.ts`.
+
+### Why
+-   **Consistency**: Ensures all errors return a standard JSON structure (e.g., always including `timestamp` and `path`).
+-   **Control**: Allows you to hide internal server errors or transform validation errors.
+-   **Logging**: A great place to log errors to an external service (e.g., Sentry).
+
+### When
+-   Use **Global Filters** to standardize error responses across your entire API.
+-   Use **Scoped Filters** for specific controllers that need unique error handling logic.
+
+### CLI Commands
+-   `nest generate filter common/filters/http-exception`: Generates a filter class.
+
+## Step 10: Guards & Authentication
+
+### What
+-   **Guard**: A class annotated with `@Injectable()` that implements `CanActivate`. It determines if a request should be handled by the route handler.
+-   **Authentication**: Verifying who the user is (e.g., checking an API key or JWT).
+-   **Authorization**: Verifying what the user is allowed to do (e.g., Admin vs. User).
+
+### How
+1.  **Create Guard**: Implement `CanActivate` interface.
+    ```typescript
+    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean>
+    ```
+2.  **Implement Logic**: Check headers, session, or token in the `context`. Return `true` to allow, `false` to deny.
+3.  **Apply Guard**: Use `@UseGuards()` on a controller/method, or globally.
+
+### Why
+-   **Security**: Protects your API from unauthorized access.
+-   **Separation**: Authentication logic is kept separate from business logic.
+-   **Declarative**: You can see which routes are protected just by looking at the decorators.
+
+### When
+-   Use Guards for **Authentication** (Who are you?) and **Authorization** (Can you do this?).
+
+### CLI Commands
+-   `nest generate guard common/guards/api-key`: Generates a guard class.
+
+## Summary of Learning
+
+We have successfully built a robust, production-ready NestJS feature (`Users`) from scratch. Here is a recap of the key pillars we established:
+
+1.  **Architecture**: Adopted the modular `Module-Controller-Service` pattern for clean separation of concerns.
+2.  **Data Integrity**: Implemented `DTOs` with `class-validator` to ensure only valid data enters our system.
+3.  **Persistence**: Integrated `TypeORM` with `PostgreSQL` to store data reliably, moving away from in-memory arrays.
+4.  **Schema Management**: Established a `Migration` workflow to safely evolve the database schema across environments.
+5.  **Configuration**: Secured sensitive data using `@nestjs/config` and environment variables, ensuring no secrets are hardcoded.
+6.  **Dependency Injection**: Mastered NestJS's DI system, including custom providers, to decouple components.
+7.  **Request Lifecycle**: Utilized `Middleware` for logging and `Interceptors` for response transformation.
+8.  **Quality Assurance**: Wrote `Unit Tests` with Jest to verify business logic in isolation.
+9.  **Error Handling**: Created a global `Exception Filter` to provide consistent, user-friendly error responses.
+10. **Security**: Implemented `Guards` to protect API endpoints from unauthorized access.
+
+This foundation empowers you to build scalable, maintainable, and secure enterprise-grade applications.
