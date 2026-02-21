@@ -26,16 +26,16 @@ Notes:
 
 ## Step 2
 
-Q1:  
-Q2:  
-Q3:  
-Q4:  
+Q1:  DTOs define a runtime-safe contract between client and server, not just compile-time TypeScript typing.
+Q2:  ValidationPipe validates incoming request data against DTO rules and returns structured 400 errors for invalid input; optional transform can coerce types.
+Q3:  Use DTOs for endpoints with request bodies (`POST`, `PUT`, `PATCH`) and complex query inputs.
+Q4:  Without validation, malformed or malicious input can reach business logic/DB, causing security issues, bad data, and unstable behavior.
 
 Progress:
-- [ ] Read concept
-- [ ] Answered questions
-- [ ] Enabled validation flow
-- [ ] Created one DTO with validation rules
+- [X] Read concept
+- [X] Answered questions
+- [X] Enabled validation flow
+- [X] Created one DTO with validation rules
 
 Notes:
 - Focus on runtime safety: TypeScript types are not enough for incoming requests.
