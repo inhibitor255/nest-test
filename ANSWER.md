@@ -45,16 +45,16 @@ Notes:
 
 ## Step 3
 
-Q1:  
-Q2:  
-Q3:  
-Q4:  
+Q1:  entity is medium layer between database table and typescript object of ORM.
+Q2:  Raw SQL Query
+Q3:  To use the base entity from DI
+Q4:  Maintainability, Predictability and Testability 
 
 Progress:
-- [ ] Read concept
-- [ ] Answered questions
-- [ ] Created one entity model
-- [ ] Connected service to repository
+- [X] Read concept
+- [X] Answered questions
+- [X] Created one entity model
+- [X] Connected service to repository
 
 Notes:
 - Keep entity fields aligned with real DB constraints (type, nullable, unique).
