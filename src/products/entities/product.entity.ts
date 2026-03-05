@@ -9,6 +9,6 @@ export class Product {
   @Column({type: 'varchar', length: 255, unique: true})
   name: string;
 
-  @Column({nullable: true})
+  @Column({ type: 'integer', nullable: true })
   price: number | null;
 }

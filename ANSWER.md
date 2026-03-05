@@ -64,16 +64,16 @@ Notes:
 
 ## Step 4
 
-Q1:  
-Q2:  
-Q3:  
-Q4:  
+Q1:  Because migration are store in git just like code, so it ensure consistency.
+Q2:  To connect and execute database actions.
+Q3:  Whenever Database change actions happen such as change column name, column type, ...
+Q4:  hidde bugs because of we can see what changes in database.
 
 Progress:
-- [ ] Read concept
-- [ ] Answered questions
-- [ ] Generated one migration file
-- [ ] Applied migration successfully
+- [X] Read concept
+- [X] Answered questions
+- [X] Generated one migration file
+- [X] Applied migration successfully
 
 Notes:
 - Treat migrations as source of truth for schema changes in shared environments.
